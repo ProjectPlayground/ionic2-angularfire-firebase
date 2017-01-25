@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>Menu</ion-title>
+    <ion-buttons end>
+      <button (click)="addMenu()">
+        <ion-icon name="add" secondary> Add</ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-card *ngFor="let item of menus; let i = index" (click)="tapToIncrease(item.key, i)" >
+    <img src="{{item.menu.photo_url}}">
+    <ion-item>
+      <!--<ion-icon name="football" item-left large></ion-icon>-->
+      <h1>{{item.menu.name}}</h1>
+      <p style="font-style: italic">{{item.menu.name_en}}</p>
+    </ion-item>
+    <ion-grid>
+      <ion-row wrap>
+        <ion-col width-60>
+          <ion-item style="padding-left:0px">
+            <ion-icon name="ios-pricetag-outline" item-left medium></ion-icon>
+            <h2>{{item.menu.price}}</h2>
+            <p>{{item.menu.size}}</p>
+          </ion-item>
+        </ion-col>
+        <ion-col width-40>
+          <ion-row>
+            <ion-item >
+              <button *ngIf="!item.count" ion-button color="light" style="font-size: 3rem"><span style="color: white">{{item.count}}</span></button>
+              <button *ngIf="item.count" ion-button color="blue" style="font-size: 3rem"><span style="color: white">{{item.count}}</span></button>
+            </ion-item>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>Your Orders</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!--<div *ngIf="!isOrderSent">-->
+  <div>
+    <ion-card *ngFor="let item of orderedList; let i= index">
+      <ion-grid>
+        <ion-row wrap>
+          <ion-col width-30>
+            <ion-avatar item-left>
+              <img src="{{item.menu.photo_url}}">
+            </ion-avatar>
+          </ion-col>
+          <ion-col width-70>
+            <ion-row>
+              <ion-item>
+                <h2>{{item.menu.name}}</h2>
+                <p style="font-style: italic">{{item.menu.name_en}}</p>
+</ion-item>
+</ion-row>
+<ion-row>
+  <ion-item style="padding-left:5px">
+<button ion-button color="danger" style="font-size: 1.7rem" (click)="decreaseOne(item.orderedAmount,i)">-</button>
+</ion-item>
+<ion-item style="padding-left:5px">
+<button ion-button style="font-size: 2rem">{{item.orderedAmount}}</button>
+</ion-item>
+<ion-item style="padding-left:5px">
+<button ion-button color="secondary" style="font-size: 1.7rem" (click)="increaseOne(item.orderedAmount,i)">+</button>
+</ion-item>
+</ion-row>
+</ion-col>
+</ion-row>
+</ion-grid>
+</ion-card>
+</div>
+<div [hidden]="!hasNEW">
+  <ion-row padding>
+    <button ion-button color="danger">
+                  <ion-label>Select your table</ion-label>
+                  <ion-select [(ngModel)]="gender">
+                      <ion-option value="0" selected="true"></ion-option>
+                      <ion-option value="TB1">Table 1</ion-option>
+                      <ion-option value="TB2">Table 2</ion-option>
+                      <ion-option value="TB3">Table 3</ion-option>
+                      <ion-option value="TB4">Table 4</ion-option>
+                      <ion-option value="TB5">Table 5</ion-option>
+                      <ion-option value="TB6">Table 6</ion-option>
+                      <ion-option value="TB7">Table 7</ion-option>
+                      <ion-option value="TB8">Table 8</ion-option>
+                      <ion-option value="TB9">Table 9</ion-option>
+                      <ion-option value="TB10">Table 10</ion-option>
+                  </ion-select>
+      </button>
+  </ion-row>
+  <ion-row padding>
+    <button (click)="alertOrderSent()" ion-button color="light">CONFIRM</button>
+  </ion-row>
+</div>
+
+<!--After sending order -->
+<div>
+  <!--<ion-card *ngIf="isOrderSent">-->
+  <ion-card *ngIf="orderedList.length">
+    <ion-list>
+      <ion-item *ngFor="let item of orderedList">
+        <ion-thumbnail item-left>
+          <img src="{{item.menu.photo_url}}">
+        </ion-thumbnail>
+        <div align="center">
+          <ion-icon ios="ios-time-outline" md="md-time" color="{{item.color}}"></ion-icon>
+          <p style="font-style: italic; font-size: 1rem">{{item.status}}</p>
+</div>
+<button ion-button item-right clear><ion-icon name="more"></ion-icon></button>
+</ion-item>
+</ion-list>
+</ion-card>
+</div>
+</ion-content>

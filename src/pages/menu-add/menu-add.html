@@ -1,0 +1,69 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add Menu</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="add-menu">
+  <ion-card>
+    <input type="hidden" [(ngModel)]="menu.id" />
+    <ion-item>
+      <ion-label stacked>Name</ion-label>
+      <ion-input [(ngModel)]="menu.name" type="text" placeholder="Name of menu"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>English Name</ion-label>
+      <ion-input [(ngModel)]="menu.name_en" type="text" placeholder="English name of menu"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Price</ion-label>
+      <ion-input [(ngModel)]="menu.price" type="text" placeholder="Price"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Size</ion-label>
+      <ion-input [(ngModel)]="menu.size" type="text" placeholder="Size"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Photo</ion-label>
+      <ion-input [(ngModel)]="menu.photo_url" type="text" placeholder="URL of photo"></ion-input>
+    </ion-item>
+    <button ion-button small color="primary" (click)="addMenu(menu.id, menu.name,menu.name_en, menu.price, menu.size, menu.photo_url)"> <span *ngIf="menu.id">Update Menu</span><span *ngIf="!menu.id">Add Menu</span> </button>
+
+  </ion-card>
+  <p style="color: darkseagreen">PREVIEW</p>
+<ion-card>
+  <img src="{{menu.photo_url}}">
+  <ion-item>
+    <!--<ion-icon name="football" item-left large></ion-icon>-->
+    <h1>{{menu.name}}</h1>
+    <p style="font-style: italic">{{menu.name_en}}</p>
+</ion-item>
+<ion-grid>
+  <ion-row wrap>
+    <ion-col width-30>
+      <ion-item style="padding-left:0px">
+<ion-icon name="ios-pricetag-outline" item-left medium></ion-icon>
+<h2>{{menu.price}}</h2>
+<p>{{menu.size}}</p>
+</ion-item>
+</ion-col>
+<ion-col width-70>
+  <ion-row>
+    <ion-item style="padding-left:0px">
+<button ion-button color="danger" style="font-size: 1.7rem">-</button>
+</ion-item>
+<ion-item style="padding-left:0px">
+<button ion-button style="font-size: 2rem">0</button>
+</ion-item>
+<ion-item style="padding-left:0px">
+<button ion-button color="secondary" style="font-size: 1.7rem">+</button>
+</ion-item>
+</ion-row>
+</ion-col>
+</ion-row>
+</ion-grid>
+</ion-card>
+</ion-content>
